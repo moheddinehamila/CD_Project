@@ -5,7 +5,7 @@ registryCredential = 'dockerhib_id'
 dockerImage = '${registry}:${BUILD_NUMBER}'
 }
 	agent any
-	stages{
+	stages{ 
 		stage('clone and clean repo'){
 	           steps {
 				sh " rm -rf CD_Project"
