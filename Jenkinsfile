@@ -28,7 +28,7 @@ dockerImage = '${registry}:${BUILD_NUMBER}'
       docker.withRegistry( '', registryCredential ) {
          sh "docker push $dockerImage"
       }
-      sh " docker run -it -p 8067:8080  $dockerImage "
+      sh " docker run  -p 8067:8080   $dockerImage "
     }
   }
 }
