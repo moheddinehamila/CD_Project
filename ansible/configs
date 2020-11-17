@@ -1,1 +1,1 @@
-EC2_Instance ansible_host=34.207.71.95  ansible_private_key_file=~/keypp.pem ansible_ssh_user=ubuntu
+EC2_Instance ansible_host=34.207.71.95  ansible_ssh_user=ubuntu
