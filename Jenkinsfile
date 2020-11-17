@@ -28,10 +28,16 @@ dockerImage = '${registry}:${BUILD_NUMBER}'
       docker.withRegistry( '', registryCredential ) {
          sh "docker push $dockerImage"
       }
-      sh " docker run  -p 8067:8080   $dockerImage "
     }
   }
 }
-
+ stage('Ansible install docker & Run image') {
+        steps{
+    ansiblePlaybook credentialsId: 'private-key', 
+    disableHostKeyChecking: true, installation: 'ansible', 
+    inventory: 'CD_Project/ansible/configs',
+    playbook: 'CD_Project/ansible/playbook.yaml',
+    extras: '--extra-vars image_name=$dockerImage'
+    
 	}
 }
