@@ -10,10 +10,23 @@
    - name: Update apt-get repo and cache
      apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
 
-   - name: Install apache httpd  (state=present is optional)
+   - name: Install prerequisites for Docker repository
      apt:
-        name: docker.io
-        state: present
+       name: ['apt-transport-https', 'ca-certificates', 'curl', 'gnupg2', 'software-properties-common']
+       update_cache: yes
+
+   - name: Add Docker GPG key
+     apt_key: url=https://download.docker.com/linux/ubuntu/gpg
+
+   - name: Add Docker APT repository
+     apt_repository:
+       repo: deb [arch=amd64] https://download.docker.com/linux/{{ansible_distribution|lower}} {{ansible_distribution_release}} stable
+
+   - name: Install Docker CE
+     apt:
+       name: ['docker-ce', 'docker-ce-cli', 'containerd.io']
+       update_cache: yes
+
 
    - name: Pull default Docker image
      docker_image:
@@ -22,7 +35,6 @@
 
    - name: run container
      docker_container:
-       name: wartest
        image: "{{ image_name }}"
        ports: 80:8080
        state: started
