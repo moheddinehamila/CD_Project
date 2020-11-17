@@ -1,0 +1,28 @@
+---
+- hosts: EC2_Instance
+  become: true
+  become: yes
+  gather_facts: no
+#  vars_files:
+#   - vars/default.yml
+
+  tasks:
+   - name: Update apt-get repo and cache
+      apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+
+   - name: Install apache httpd  (state=present is optional)
+      apt:
+        name: docker.io
+        state: present
+
+   - name: Pull default Docker image
+     docker_image:
+      name: "{{ image_name }}"
+      source: pull
+
+   - name: run container
+     docker_container:
+       name: wartest
+       image: "{{ image_name }}"
+       ports: 80:8080
+       state: started
