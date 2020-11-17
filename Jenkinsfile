@@ -40,4 +40,5 @@ pipeline {
 		echo 'You can test the application using this link==> http://ec2-34-207-71-95.compute-1.amazonaws.com/'   
   		}
 		}
+    }
 }
