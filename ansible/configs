@@ -1,1 +1,1 @@
-EC2_Instance ansible_host=34.207.71.95  ansible_ssh_user=ubuntu
+EC2_Instance ansible_host=54.174.159.41	  ansible_ssh_user=ubuntu
