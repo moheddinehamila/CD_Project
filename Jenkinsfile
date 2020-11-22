@@ -37,7 +37,7 @@ pipeline {
     		inventory: 'CD_Project/ansible/configs',
     		playbook: 'CD_Project/ansible/playbook.yaml',
     		extras: '--extra-vars image_name=$dockerImage'
-		echo 'You can test the application using this link==> http://ec2-34-207-71-95.compute-1.amazonaws.com/'   
+		echo 'You can test the application using this link==> http://ec2-54-174-159-41.compute-1.amazonaws.com/'   
   		}
 		}
     }
